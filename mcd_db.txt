@@ -1,0 +1,42 @@
+Table Playlist {
+  pid int [primary key]
+  name varchar
+  collaborative boolean
+  modified_at bigint
+  num_tracks int
+  num_albums int
+  num_followers int
+}
+
+Table Track {
+  track_uri varchar [primary key]
+  track_name varchar
+  duration_ms int
+  artist_uri varchar
+  album_uri varchar
+}
+
+Table Artist {
+  artist_uri varchar [primary key]
+  artist_name varchar
+}
+
+Table Album {
+  album_uri varchar [primary key]
+  album_name varchar
+}
+
+Table PlaylistTrack {
+  playlist_id int
+  track_uri varchar
+  position int
+
+  Note: "position = ordre du morceau dans la playlist"
+
+  Primary Key (playlist_id, position)
+}
+
+Ref: Track.artist_uri > Artist.artist_uri
+Ref: Track.album_uri > Album.album_uri
+Ref: PlaylistTrack.playlist_id > Playlist.pid
+Ref: PlaylistTrack.track_uri > Track.track_uri
