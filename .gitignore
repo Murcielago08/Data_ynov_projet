@@ -134,6 +134,7 @@ venv.bak/
 .venv_py/
 
 data/*.json
+test.py
 
 
 
